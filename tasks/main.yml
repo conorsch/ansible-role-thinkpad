@@ -1,2 +1,46 @@
 ---
 # tasks file for ansible-thinkpad
+- name: add imps setting for touchpad config
+  copy:
+    src: psmouse.conf
+    dest: /etc/modprobe.d/
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - update initramfs
+  tags:
+    - thinkpad
+
+- name: add thinkpad acpi settings for power config
+  copy:
+    src: thinkpad_acpi.conf
+    dest: /etc/modprobe.d/
+    owner: root
+    group: root
+    mode: "0644"
+  tags:
+    - thinkpad
+
+- name: downgrade X11 driver
+  copy:
+    src: 20-intel.conf
+    dest: /etc/modprobe.d/
+    dest: /usr/share/X11/xorg.conf.d/
+    owner: root
+    group: root
+    mode: "0644"
+  when: thinkpad_driver_downgrade is defined and thinkpad_driver_downgrade
+  tags:
+    - thinkpad
+
+- name: get custom xrandr screen resolution facts
+  action: xrandr
+  tags:
+    - thinkpad
+
+- name: display screen resolution
+  debug: var=resolution_as_string
+  tags:
+    - thinkpad
+

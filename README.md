@@ -1,12 +1,12 @@
-Role Name
+ansible-thinkpad
 =========
 
-A brief description of the role goes here.
+Common config settings for fixing hardware compatibility on Lenovo X1 Carbon 3rd Gen and Ubuntu 14.04.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Assumes Ubuntu. Assumes 3rd gen for X1 Carbon series (serial number /^20BS/).
 
 Role Variables
 --------------
@@ -16,23 +16,22 @@ A description of the settable variables for this role should go here, including 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+If you have problems with graphical distortion, changing the X11 video driver
+may help. Changing the driver is disabled by default because it may negatively
+affect video performance.
+
+`thinkpad_driver_downgrade: false`
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: laptop
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: conorsch.thinkpad-ansible, thinkpad-driver_downgrade: true }
 
 License
 -------
 
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+MIT

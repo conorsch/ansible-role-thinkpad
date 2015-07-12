@@ -1,0 +1,5 @@
+---
+# Make sure we're running on a X1 Carbon 3rd gen
+- debug: check for Lenovo Thinkpad hardware type
+  failed_when: ansible_product_version != "ThinkPad X1 Carbon 3rd"
+
