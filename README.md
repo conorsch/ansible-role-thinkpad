@@ -29,7 +29,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: laptop
       roles:
-         - { role: conorsch.thinkpad-ansible, thinkpad-driver_downgrade: true }
+         - { role: conorsch.thinkpad-ansible, thinkpad_driver_downgrade: true }
 
 License
 -------
