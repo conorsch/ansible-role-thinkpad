@@ -1,0 +1,14 @@
+---
+# set up touchpad for more stable response
+- name: add imps setting for touchpad config
+  copy:
+    src: psmouse.conf
+    dest: /etc/modprobe.d/
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - update initramfs
+  tags:
+    - thinkpad
+

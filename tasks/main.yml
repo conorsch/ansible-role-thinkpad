@@ -1,18 +1,7 @@
 ---
 - include: backlight.yml
 - include: video.yml
-
-- name: add imps setting for touchpad config
-  copy:
-    src: psmouse.conf
-    dest: /etc/modprobe.d/
-    owner: root
-    group: root
-    mode: "0644"
-  notify:
-    - update initramfs
-  tags:
-    - thinkpad
+- include: touchpad.yml
 
 - name: add thinkpad acpi settings for power config
   copy:
@@ -21,6 +10,8 @@
     owner: root
     group: root
     mode: "0644"
+  notify:
+    - update initramfs
   tags:
     - thinkpad
 
