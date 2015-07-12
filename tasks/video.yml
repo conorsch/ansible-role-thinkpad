@@ -5,6 +5,15 @@
      repo: ppa:oibaf/graphics-drivers
      state: present
 
+- name: disable ips screen in grub
+  lineinfile:
+    dest: /etc/default/grub
+    regexp: "^GRUB_CMDLINE_LINUX_DEFAULT="
+#    line: 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"'
+    line: 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash i915.enable_ips=0"'
+  notify:
+    - update grub
+
 - name: downgrade X11 driver
   copy:
     src: 20-intel.conf
