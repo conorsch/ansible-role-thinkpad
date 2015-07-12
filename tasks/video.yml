@@ -8,8 +8,7 @@
 - name: downgrade X11 driver
   copy:
     src: 20-intel.conf
-    dest: /etc/modprobe.d/
-    dest: /usr/share/X11/xorg.conf.d/
+    dest: /etc/X11/xorg.conf.d/
     owner: root
     group: root
     mode: "0644"
