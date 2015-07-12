@@ -1,5 +1,6 @@
 ---
-# tasks file for ansible-thinkpad
+- include: video.yml
+
 - name: add imps setting for touchpad config
   copy:
     src: psmouse.conf

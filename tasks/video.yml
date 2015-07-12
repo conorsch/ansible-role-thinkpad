@@ -1,0 +1,6 @@
+---
+# fixes for distorted video on X1 Carbon 3rd Gen.
+- name: add graphics-drivers ppa
+  apt_repository:
+     repo: ppa:oibaf/graphics-drivers
+     state: present
