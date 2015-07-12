@@ -15,24 +15,6 @@
   tags:
     - thinkpad
 
-- name: downgrade X11 driver
-  copy:
-    src: 20-intel.conf
-    dest: /etc/modprobe.d/
-    dest: /usr/share/X11/xorg.conf.d/
-    owner: root
-    group: root
-    mode: "0644"
-  when: thinkpad_driver_downgrade is defined and thinkpad_driver_downgrade
-  tags:
-    - thinkpad
-
-- name: remove driver downgrade if necessary
-  file:
-    path: /etc/modprobe.d/20-intel.conf
-    state: absent
-  when: thinkpad_driver_downgrade is defined and not thinkpad_driver_downgrade
-
 - name: get custom xrandr screen resolution facts
   action: xrandr
   tags:
