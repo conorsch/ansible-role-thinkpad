@@ -32,7 +32,7 @@
 
 - name: remove driver downgrade if necessary
   file:
-    path: /etc/modprobe.d/20-intel.conf
+    path: /etc/X11/xorg.conf.d/20-intel.conf
     state: absent
   when: thinkpad_driver_downgrade is defined and not thinkpad_driver_downgrade
 

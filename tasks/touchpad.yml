@@ -15,7 +15,6 @@
 - name: add touchpad settings to X11 config
   copy:
     src: 11-evdev-trackpoint.conf
-    dest: /etc/modprobe.d/
     dest: /etc/X11/xorg.conf.d/
     owner: root
     group: root
