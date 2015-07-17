@@ -1,9 +1,14 @@
 ---
-# fixes for distorted video on X1 Carbon 3rd Gen.
+# Fixes for distorted video on X1 Carbon 3rd Gen
+# by way of bleeding edge video drivers. Vastly improves
+# support for graphics hardware such as i915, which
+# X1 Carbon uses.
 - name: add graphics-drivers ppa
   apt_repository:
      repo: ppa:oibaf/graphics-drivers
-     state: present
+     # Testing didn't show great results, so removing
+     # the PPA to isolate changes elsewhere.
+     state: absent
 
 - name: disable ips screen in grub
   lineinfile:
