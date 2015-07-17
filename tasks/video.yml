@@ -38,3 +38,25 @@
     state: absent
   when: thinkpad_driver_downgrade is defined and not thinkpad_driver_downgrade
 
+- name: add ubuntu proposed repo
+  copy:
+    src: ubuntu_proposed.list
+    dest: /etc/apt/sources.list.d/
+    mode: "0644"
+    owner: root
+    group: root
+
+- name: add ubuntu proposed apt preferences
+  copy:
+    src: ubuntu_proposed.pref
+    dest: /etc/apt/preferences.d/
+    mode: "0644"
+    owner: root
+    group: root
+
+- name: install proposed intel video driver package
+  apt:
+    name: xserver-xorg-video-intel-lts-utopic
+    # Due to dependency hell, this package doesn't install cleanly,
+    # so disabling for now.
+    state: absent
