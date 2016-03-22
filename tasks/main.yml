@@ -1,6 +1,15 @@
 ---
-- include: init.yml
-- include: touchpad.yml
+- name: ensure X11 config directory exists
+  file:
+    path: /etc/X11/xorg.conf.d
+    mode: "0755"
+    state: directory
+    owner: root
+    group: root
+
+# Make sure we're running on a X1 Carbon 3rd gen
+- debug: check for Lenovo Thinkpad hardware type
+  failed_when: ansible_product_version != "ThinkPad X1 Carbon 3rd"
 
 - name: add thinkpad acpi settings for power config
   copy:
@@ -14,13 +23,23 @@
   tags:
     - thinkpad
 
-- name: get custom xrandr screen resolution facts
-  action: xrandr
+# set up touchpad for more stable response
+- name: add imps setting for touchpad config
+  copy:
+    src: psmouse.conf
+    dest: /etc/modprobe.d/
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - update initramfs
   tags:
     - thinkpad
 
-- name: display screen resolution
-  debug: var=resolution_as_string
-  tags:
-    - thinkpad
-
+- name: add touchpad settings to X11 config
+  copy:
+    src: 11-evdev-trackpoint.conf
+    dest: /etc/X11/xorg.conf.d/
+    owner: root
+    group: root
+    mode: "0644"
