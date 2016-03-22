@@ -1,5 +1,5 @@
 ---
-- name: ensure X11 config directory exists
+- name: Create X11 config directory.
   file:
     path: /etc/X11/xorg.conf.d
     mode: "0755"
@@ -11,7 +11,7 @@
 - debug: check for Lenovo Thinkpad hardware type
   failed_when: ansible_product_version != "ThinkPad X1 Carbon 3rd"
 
-- name: add thinkpad acpi settings for power config
+- name: Set Thinkpad-compatible ACPI settings for power management.
   copy:
     src: thinkpad_acpi.conf
     dest: /etc/modprobe.d/
@@ -24,7 +24,8 @@
     - thinkpad
 
 # set up touchpad for more stable response
-- name: add imps setting for touchpad config
+# This was necessary on ThinkPad X1 Carbon Third Gen for a while.
+- name: Set IMPS options for touchpad performance.
   copy:
     src: psmouse.conf
     dest: /etc/modprobe.d/
@@ -33,10 +34,8 @@
     mode: "0644"
   notify:
     - update initramfs
-  tags:
-    - thinkpad
 
-- name: add touchpad settings to X11 config
+- name: Set scroll-via-TrackPoint options in X11 config.
   copy:
     src: 11-evdev-trackpoint.conf
     dest: /etc/X11/xorg.conf.d/

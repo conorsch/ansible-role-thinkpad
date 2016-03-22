@@ -1,12 +1,10 @@
 ---
 # configure backlight settings so buttons work
-- name: add intel backlight settings to x11 config
+- name: Add Intel backlight settings to X11 config.
   copy:
     src: 80-backlight.conf
     dest: /etc/X11/xorg.conf.d/
     owner: root
     group: root
     mode: "0644"
-  tags:
-    - thinkpad_backlight
-
+  tags: backlight
