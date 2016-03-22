@@ -1,4 +1,12 @@
 ---
+# Make sure we're running on a X1 Carbon 3rd gen
+- name: Check that current system is a Lenovo Thinkpad.
+  fail:
+    msg: >-
+      Target system appears not to be a Thinkpad (found hardware type
+      {{ ansible_product_version }}).
+  when: "'Thinkpad' not in ansible_product_version"
+
 - name: Create X11 config directory.
   file:
     path: /etc/X11/xorg.conf.d
@@ -6,10 +14,6 @@
     state: directory
     owner: root
     group: root
-
-# Make sure we're running on a X1 Carbon 3rd gen
-- debug: check for Lenovo Thinkpad hardware type
-  failed_when: ansible_product_version != "ThinkPad X1 Carbon 3rd"
 
 - name: Set Thinkpad-compatible ACPI settings for power management.
   copy:
@@ -42,3 +46,13 @@
     owner: root
     group: root
     mode: "0644"
+
+# configure backlight settings so buttons work
+- name: Add Intel backlight settings to X11 config.
+  copy:
+    src: 80-backlight.conf
+    dest: /etc/X11/xorg.conf.d/
+    owner: root
+    group: root
+    mode: "0644"
+  tags: backlight
