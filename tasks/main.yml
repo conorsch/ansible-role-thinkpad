@@ -22,10 +22,9 @@
     owner: root
     group: root
     mode: "0644"
+  when: thinkpad_configure_acpi == true
   notify:
     - update initramfs
-  tags:
-    - thinkpad
 
 # set up touchpad for more stable response
 # This was necessary on ThinkPad X1 Carbon Third Gen for a while.
@@ -36,6 +35,7 @@
     owner: root
     group: root
     mode: "0644"
+  when: thinkpad_configure_imps == true
   notify:
     - update initramfs
 
@@ -46,6 +46,7 @@
     owner: root
     group: root
     mode: "0644"
+  when: thinkpad_x11_trackpoint_scroll == true
 
 # configure backlight settings so buttons work
 - name: Add Intel backlight settings to X11 config.
@@ -55,4 +56,5 @@
     owner: root
     group: root
     mode: "0644"
+  when: thinkpad_intel_backlight == true
   tags: backlight

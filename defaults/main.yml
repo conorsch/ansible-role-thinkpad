@@ -1,3 +1,11 @@
 ---
 # defaults file for ansible-thinkpad
 thinkpad_driver_downgrade: false
+
+thinkpad_configure_acpi: false
+
+thinkpad_configure_imps: false
+
+thinkpad_x11_trackpoint_scroll: false
+
+thinkpad_intel_backlight: false
