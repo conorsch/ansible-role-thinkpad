@@ -1,8 +1,0 @@
----
-- name: ensure ppa-purge is installed
-  apt:
-    name: ppa-purge
-    state: present
-    update_cache: true
-    # [sic] 10 hours is fine
-    cache_valid_time: 36000

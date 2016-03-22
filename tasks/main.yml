@@ -1,6 +1,5 @@
 ---
 - include: init.yml
-- include: packages.yml
 - include: touchpad.yml
 
 - name: add thinkpad acpi settings for power config
