@@ -1,5 +1,0 @@
-# Proposed updates for Trusty packages for testing.
-# https://wiki.ubuntu.com/Testing/EnableProposed
-# Adding in an attempt to get more stable video
-# drivers for X1 Carbon.
-deb http://archive.ubuntu.com/ubuntu/ trusty-proposed restricted main multiverse universe
