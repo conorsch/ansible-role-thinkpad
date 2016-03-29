@@ -1,11 +1,11 @@
 ---
 # Make sure we're running on a X1 Carbon 3rd gen
-- name: Check that current system is a Lenovo Thinkpad.
+- name: Check that current system is a Lenovo ThinkPad.
   fail:
     msg: >-
-      Target system appears not to be a Thinkpad (found hardware type
+      Target system appears not to be a ThinkPad (found hardware type
       {{ ansible_product_version }}).
-  when: "'Thinkpad' not in ansible_product_version"
+  when: "'ThinkPad' not in ansible_product_version"
 
 - name: Set Thinkpad-compatible ACPI settings for power management.
   copy:
