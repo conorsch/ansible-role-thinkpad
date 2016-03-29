@@ -7,14 +7,6 @@
       {{ ansible_product_version }}).
   when: "'Thinkpad' not in ansible_product_version"
 
-- name: Create X11 config directory.
-  file:
-    path: /etc/X11/xorg.conf.d
-    mode: "0755"
-    state: directory
-    owner: root
-    group: root
-
 - name: Set Thinkpad-compatible ACPI settings for power management.
   copy:
     src: thinkpad_acpi.conf
@@ -38,6 +30,14 @@
   when: thinkpad_configure_imps == true
   notify:
     - update initramfs
+
+- name: Create X11 config directory.
+  file:
+    path: /etc/X11/xorg.conf.d
+    mode: "0755"
+    state: directory
+    owner: root
+    group: root
 
 - name: Set scroll-via-TrackPoint options in X11 config.
   copy:
