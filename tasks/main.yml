@@ -8,6 +8,7 @@
   when: "'ThinkPad' not in ansible_product_version"
 
 - name: Set Thinkpad-compatible ACPI settings for power management.
+  become: yes
   copy:
     src: thinkpad_acpi.conf
     dest: /etc/modprobe.d/
@@ -21,6 +22,7 @@
 # set up touchpad for more stable response
 # This was necessary on ThinkPad X1 Carbon Third Gen for a while.
 - name: Set IMPS options for touchpad performance.
+  become: yes
   copy:
     src: psmouse.conf
     dest: /etc/modprobe.d/
@@ -32,6 +34,7 @@
     - update initramfs
 
 - name: Create X11 config directory.
+  become: yes
   file:
     path: /etc/X11/xorg.conf.d
     mode: "0755"
@@ -40,6 +43,7 @@
     group: root
 
 - name: Set scroll-via-TrackPoint options in X11 config.
+  become: yes
   copy:
     src: 11-evdev-trackpoint.conf
     dest: /etc/X11/xorg.conf.d/
@@ -50,6 +54,7 @@
 
 # configure backlight settings so buttons work
 - name: Add Intel backlight settings to X11 config.
+  become: yes
   copy:
     src: 80-backlight.conf
     dest: /etc/X11/xorg.conf.d/
