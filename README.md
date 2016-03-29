@@ -1,14 +1,21 @@
 # ansible-thinkpad
 
-Common config settings for fixing hardware compatibility on Lenovo X1 Carbon 3rd Gen and Ubuntu 14.04.
+Common config settings for hardware compatibility on Lenovo ThinkPads.
 
 ## Requirements
 
-Assumes Ubuntu. Assumes 3rd gen for X1 Carbon series (serial number /^20BS/).
+Tested on the following ThinkPad models:
+
+* ThinkPad X1 Carbon 3rd
+* ThinkPad T450s
+
+Assumes a Debian-like OS.
 
 ## Role Variables
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+```
+# TODO
+```
 
 ## Dependencies
 
@@ -18,14 +25,16 @@ affect video performance.
 
 `thinkpad_driver_downgrade: false`
 
+This was an issue under Ubuntu 14.04 but may have since been patched in stable.
+
 ## Example Playbook
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: laptop
-      roles:
-         - role: conorsch.thinkpad
-           thinkpad_x11_trackpoint_scroll: true
+```
+- hosts: laptop
+  roles:
+     - role: conorsch.thinkpad
+       thinkpad_x11_trackpoint_scroll: true
+```
 
 ## License
 
