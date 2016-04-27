@@ -1,7 +1,5 @@
 ---
 # defaults file for ansible-thinkpad
-thinkpad_driver_downgrade: false
-
 thinkpad_configure_acpi: false
 
 thinkpad_configure_imps: false
