@@ -14,7 +14,20 @@ Assumes a Debian-like OS.
 ## Role Variables
 
 ```
-# TODO
+# Use the TrackPoint as a scroll-wheel when middle-click is depressed.
+# Great for ergonomic scrolling without repetitive swiping motions.
+thinkpad_x11_trackpoint_scroll: false
+
+# Installing 'xbacklight' is generally good enough for brightness controls.
+thinkpad_intel_backlight: false
+
+# Sets boot options 'thinkpad_acpi force_load=1'. Was necessary briefly in 2015,
+# but modern distros seem to have accounted for this problem, so off by default.
+thinkpad_configure_acpi: false
+
+# Some ThinkPads require additional pointer support, e.g. X1 3rd Gen
+# under Ubuntu 14.04. Leave off unless trackpad isn't working
+thinkpad_configure_imps: false
 ```
 
 ## Dependencies
