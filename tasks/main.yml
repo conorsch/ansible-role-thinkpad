@@ -19,6 +19,15 @@
   notify:
     - update initramfs
 
+- name: Create script for toggling TouchPad.
+  become: yes
+  copy:
+    src: touchpad-toggle-script
+    dest: /usr/local/bin/touchpad
+    owner: root
+    group: root
+    mode: "0755"
+
 # set up touchpad for more stable response
 # This was necessary on ThinkPad X1 Carbon Third Gen for a while.
 - name: Set IMPS options for touchpad performance.
@@ -63,3 +72,5 @@
     mode: "0644"
   when: thinkpad_intel_backlight == true
   tags: backlight
+
+

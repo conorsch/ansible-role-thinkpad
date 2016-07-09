@@ -1,0 +1,22 @@
+#!/bin/bash
+# Enable or disable Synaptics TouchPad.
+# Useful when one prefers TrackPoint interfaces.
+set -e
+set -o pipefail
+
+
+trackpad_id=$(xinput list | grep TouchPad | perl -ne 'm/id=(\d+)/g; print $1');
+
+case "$1" in 
+    on)
+        trackpad_state=0
+    ;;
+    off)
+        trackpad_state=1
+    ;;
+    *)
+        echo "Usage: touchpad [on|off]";
+        exit 1
+    ;;
+esac;
+xinput --set-prop "${trackpad_id}" "Synaptics Off" "${trackpad_state}"
